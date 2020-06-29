@@ -7,7 +7,7 @@ int main()
   cin>>a>>b;
   
   cout<<a<<b<<endl;
-  
+  // akash
   return 0;
   
  }
