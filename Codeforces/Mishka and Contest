@@ -1,0 +1,45 @@
+#include<iostream>
+#include<conio.h>
+#include<algorithm>
+#include<vector>
+
+using namespace std;
+
+int main()
+{
+    int array_size,skill,number,counter=0;
+    cin>>array_size>>skill;
+
+    vector<int>v1(array_size);
+
+    for(int i=0;i<v1.size();i++){
+        cin>>number;
+        v1[i]=number;
+    }
+    if(v1.front()>skill && v1.back()>skill){
+        cout<<"0";
+    }
+    else{
+        while(v1.front()<=skill){
+            counter++;
+            v1.erase(v1.begin());
+            if(v1.size()==0){
+                break;
+            }
+        }
+
+        if(v1.size()==0){
+                cout<<counter<<endl;
+        }
+        else{
+            while(v1.back()<=skill){
+                counter++;
+            v1.pop_back();
+            }
+            cout<<counter<<endl;
+        }
+
+    }
+
+    return 0;
+}
