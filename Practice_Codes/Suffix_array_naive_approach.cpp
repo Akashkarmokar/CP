@@ -1,3 +1,6 @@
+//Time Complexity : O(n^2log(n)) 
+
+
 #include<bits/stdc++.h>
 using namespace std;
 vector<pair<string,int> >v;
@@ -16,4 +19,3 @@ int main()
     return 0;
 }
 
-//Time Complexity : O(n^2log(n)) 
