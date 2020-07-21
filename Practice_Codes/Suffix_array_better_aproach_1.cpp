@@ -64,9 +64,21 @@ int main()
         k++;
     }
 
-    for (int i = 0; i < n; i++)
+    vector<int>lcp(n);
+    k = 0;
+    for(int i=0;i<n-1;i++)
     {
-        cout << pos[i] << " ";
+        int pi=cls[i];
+        int j = pos[pi-1];
+        while(s[i+k]==s[j+k]) k++;
+        lcp[pi]=k;
+        k=max(k-1,0);
     }
+    
+    for(int i=0;i<n;i++)
+    {
+        cout<<lcp[i]<<" "<<pos[i]<<" "<<s.substr(pos[i],n-pos[i])<<endl;
+    }
+    
     return 0;
 }
