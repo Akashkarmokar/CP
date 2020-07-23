@@ -94,7 +94,9 @@ int main()
         lcp[pi]=k;
         k = max(k-1,0);
     }
+    
     for(int i=0;i<n;i++)
         cout<<lcp[i]<<" "<<p[i]<<" "<<s.substr(p[i],n-p[i])<<endl;
+
     return 0;
 }
