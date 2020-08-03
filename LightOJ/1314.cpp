@@ -1,6 +1,3 @@
-// // Topic : LCP -longest common prefix
-// // Time complexity : O(n)
-
 #include <bits/stdc++.h>
 using namespace std;
 
@@ -86,8 +83,6 @@ int main()
             k++;
         }
 
-        // for(int i=0;i<n;i++)
-        //     cout<<p[i]<<" "<<s.substr(p[i],n-p[i])<<"\n";
         vector<int> lcp(n);
         k = 0;
         for (int i = 0; i < n - 1; i++)
@@ -101,23 +96,19 @@ int main()
         }
 
         int s_len = s.size() - 1;
-        // for (int i = 0; i < n; i++)
-        //     cout << lcp[i] << " " << p[i] << " " << s.substr(p[i], n - p[i]) << " " << s_len - p[i] - lcp[i] << endl;
-        // cout << endl;
         int sum = 0;
         int pp, qq;
-        // cout << "Enter pp and qq" << endl;
         cin >> pp >> qq;
         for (int i=1;i<n;i++)
         {
-            int len=n-p[i]-1;
-            int temp=len-lcp[i];
+            int len=s_len-p[i];
+            int tem_dis_substr=len-lcp[i];
             if(len>qq)
-                temp-=(len-qq);
+                tem_dis_substr-=(len-qq);
             if(lcp[i]<pp)
-                temp-=(pp-lcp[i]-1);
-            temp=max(temp,0);
-            sum+=temp;
+                tem_dis_substr-=(pp-lcp[i]-1);
+            tem_dis_substr=max(tem_dis_substr,0);
+            sum+=tem_dis_substr;
         }
         printf("Case %d: %d\n",aa,sum);
     }
