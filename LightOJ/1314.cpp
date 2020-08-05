@@ -1,6 +1,9 @@
 #include <bits/stdc++.h>
 using namespace std;
+<<<<<<< HEAD
 #define fastread ios_base::sync_with_stdio(false);cin.tie(NULL);cout.tie(NULL);
+=======
+>>>>>>> 930c7565e768a3ecd2da7206f0524cb661006120
 
 void count_sort(vector<int> &p, vector<int> &c)
 {
@@ -25,10 +28,16 @@ void count_sort(vector<int> &p, vector<int> &c)
 
 int main()
 {
+<<<<<<< HEAD
     fastread;
     int tc;
     cin >> tc;
     for (int i = 1; i <= tc; i++)
+=======
+    int tc;
+    cin >> tc;
+    for (int aa = 1; aa <= tc; aa++)
+>>>>>>> 930c7565e768a3ecd2da7206f0524cb661006120
     {
         string s;
         cin >> s;
@@ -85,8 +94,11 @@ int main()
             k++;
         }
 
+<<<<<<< HEAD
         // for(int i=0;i<n;i++)
         //     cout<<p[i]<<" "<<s.substr(p[i],n-p[i])<<"\n";
+=======
+>>>>>>> 930c7565e768a3ecd2da7206f0524cb661006120
         vector<int> lcp(n);
         k = 0;
         for (int i = 0; i < n - 1; i++)
@@ -100,6 +112,7 @@ int main()
         }
 
         int s_len = s.size() - 1;
+<<<<<<< HEAD
         for(int i=0;i<n;i++)
             cout<<lcp[i]<<" "<<p[i]<<" "<<s.substr(p[i],n-p[i])<<" "<<s_len-p[i]-lcp[i]<<endl;
 
@@ -117,5 +130,24 @@ int main()
         // printf("Case %d: %d\n",i,sum);
         
     }
+=======
+        int sum = 0;
+        int pp, qq;
+        cin >> pp >> qq;
+        for (int i=1;i<n;i++)
+        {
+            int len=s_len-p[i];
+            int tem_dis_substr=len-lcp[i];
+            if(len>qq)
+                tem_dis_substr-=(len-qq);
+            if(lcp[i]<pp)
+                tem_dis_substr-=(pp-lcp[i]-1);
+            tem_dis_substr=max(tem_dis_substr,0);
+            sum+=tem_dis_substr;
+        }
+        printf("Case %d: %d\n",aa,sum);
+    }
+
+>>>>>>> 930c7565e768a3ecd2da7206f0524cb661006120
     return 0;
 }
