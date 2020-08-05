@@ -30,10 +30,10 @@ bool cmpfn(llpr a,llpr b)
 {
     if(a.first==b.first)
     {
-        if(a.second.first==b.second.first)
-        {
-            return a.second.second<=b.second.first;
-        }
+        // if(a.second.first==b.second.first)
+        // {
+        //     return a.second.second<b.second.second;
+        // }
         return a.second.first<b.second.first;
     }
     return a.first<b.first;
