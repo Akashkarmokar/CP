@@ -1,6 +1,13 @@
 #include <bits/stdc++.h>
 using namespace std;
 
+const int MOD = 1e9+7; 
+const int MAX_OF_CATALAN = 1e4;
+
+
+int catalan[MAX_OF_CATALAN];
+
+
 bool isItBBS(string s){
 	/* if one type of bracket is allowed 
 	int len = (int)s.size();
@@ -96,6 +103,32 @@ bool next_balance_sequence(string &s){
 	}
 
 	return false;
+}
+
+/*
+	Number of balance bracket sequences 
+	The number of Balance Bracket Sequences with only one bracket can be calculated by CATALAN NUMBER.
+	Here we use Dynamic Programming to calculate catalan number series or 
+	Number of balance bracket sequence for n pair of bracket
+
+*/
+
+void initCatalan(int maxNumber){
+	if(maxNumber> MAX_OF_CATALAN){
+		cout<<"maxNumber is greater than MAX value"<<endl;
+		return;
+	}
+	catalan[0] = catalan[1] = 1;
+	for(int i=2;i<=maxNumber;i++){
+		catalan[i] = 0;
+		for(int j=0;j<i;j++){
+			catalan[i] +=(catalan[j] * catalan[(i-1)-j])%MOD;
+			if(catalan[i]>=MOD){
+				catalan[i] -= MOD;
+
+			}
+		}
+	}
 }
 
 int main(){
