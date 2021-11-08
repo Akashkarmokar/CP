@@ -15,6 +15,13 @@ vector<bool> mark;
 vector<int> order,component;
 
 
+/*
+	For condensation graph 
+
+vector<int> root,root_nodes;
+vector<vector<int>> adj_scc;
+
+*/
 
 void dfs1(int u){
 	mark[u] = true;
@@ -68,17 +75,42 @@ int main(){
 	reverse(order.begin(), order.end());
 	mark.assign(n,false);
 
-	
+	/* Graph Condensation 
+	root.assign(n,0);
+	adj_scc.assign(n,vector<int>());
 
+	*/
 	for(auto v:order){
 		if(!mark[v]){
 			dfs2(v);
+			/* condensation graph
+
+			int rootNode = component.front();
+			for(auto u:component){
+				root[u] = rootNode;
+			}
+			root_nodes.push_back(rootNode);
+
+			*/
 			ans.push_back(component);
 			component.clear();
 		}
 
 	}
 
+	/* For Condensation graph 
+
+	for(int v = 0;v<n;v++){
+		for(auto u:adj[v]){
+			int rootV = root[v];
+			int outNode = root[u];
+
+			if(rootV != outNode){
+				adj_scc[rootV].push_back(outNode);
+			}
+		}
+	}
+	*/
 	cout<<ans.size()<<endl;
 	for(auto it: ans){
 		cout<<it.size()<<" ";
