@@ -24,7 +24,36 @@ int dy4[] = {1, -1, 0, 0};
  
  
 void solve(){
-     
+     int n; cin>>n;
+     vector<int> v(n);
+     for(int i=0;i<n;i++){
+        cin>>v[i];
+     }
+     string s; cin>>s;
+     vector<pair<int,char>> vv(n);
+     for(int i=0;i<n;i++){
+        vv[i]= {v[i],s[i]};
+     }
+     sort(vv.begin(),vv.end());
+     for(auto it:vv){
+        cout<<it.first<<" "<<it.second<<endl;
+     }
+     int conf = 0;
+     for(int i=1;i<=n;i++){
+        if(vv[i-1].first!=i){
+            char ch = vv[i-1].second;
+            if(ch=='R'){
+                conf++;
+            }else{
+                conf--;
+            }
+        }
+     }
+     if(conf){
+        cout<<"NO"<<endl;
+     }else{
+        cout<<"YES"<<endl;
+     }
 }
  
 int main(){
