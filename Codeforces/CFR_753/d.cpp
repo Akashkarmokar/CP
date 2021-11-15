@@ -1,4 +1,5 @@
 #include "bits/stdc++.h"
+#include <functional>
 using namespace std;
  
 #define nl '\n'
@@ -30,30 +31,25 @@ void solve(){
         cin>>v[i];
      }
      string s; cin>>s;
-     vector<pair<int,char>> vv(n);
+     vector<int> b,r;
      for(int i=0;i<n;i++){
-        vv[i]= {v[i],s[i]};
+        (s[i]=='B'?b:r).push_back(v[i]);
      }
-     sort(vv.begin(),vv.end());
-     for(auto it:vv){
-        cout<<it.first<<" "<<it.second<<endl;
-     }
-     int conf = 0;
-     for(int i=1;i<=n;i++){
-        if(vv[i-1].first!=i){
-            char ch = vv[i-1].second;
-            if(ch=='R'){
-                conf++;
-            }else{
-                conf--;
-            }
+     int ans = true;
+     sort(b.begin(),b.end());
+     sort(r.begin(),r.end(),greater<int>());
+     for(int i=0;i<b.size();i++){
+        if(b[i]<i+1){
+            ans = false;
         }
      }
-     if(conf){
-        cout<<"NO"<<endl;
-     }else{
-        cout<<"YES"<<endl;
+     for(int i=0;i<r.size();i++){
+        if(r[i]>n-i){
+            ans = false;
+        }
      }
+ 
+     cout<< (ans?"YES":"NO") <<endl;
 }
  
 int main(){
