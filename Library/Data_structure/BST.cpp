@@ -85,6 +85,11 @@ public:
 
     // Delete a value from BST
     BST* deleteNode(BST *root,int value){
+        // base case
+        if(root == NULL){
+            return root;
+        }
+
         // if the value to be deleted is smaller than root's value,
         // then it lies in left subtree
         if(value < root->data){
