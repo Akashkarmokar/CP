@@ -8,7 +8,7 @@ char str[1100000];
 char ptr[1100000];
 int lps[1100000];
 
-int build_lps(char *pat, int sizee)
+void build_lps(char *pat, int sizee)
 {
     int i = 0, j = 1;
     while (j < sizee)
@@ -34,7 +34,7 @@ int build_lps(char *pat, int sizee)
     }
 }
 
-int kmp(char *str, char *ptr, int i)
+void kmp(char *str, char *ptr, int i)
 {
 
     int p_size = strlen(ptr);
