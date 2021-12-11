@@ -76,7 +76,7 @@ public:
 
     BST* minValueNode(BST* root){
         BST* current = root; 
-        // loop down to find the left most
+        // loop down to find the left most(Inorder successor)
         while(current && current->left!=NULL){
             current = current->left;
         }
