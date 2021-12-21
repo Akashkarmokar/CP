@@ -29,31 +29,29 @@ int dx8[] = {0, 0, 1, 1, 1, -1, -1, -1};
 int dy8[] = {1,-1, 1, -1, 0, 0, -1, 1};
 int dx4[] = {0, 0, 1, -1};
 int dy4[] = {1, -1, 0, 0};
- 
+
 //____________________________________________________________________________________________________
- 
- 
+
+
 void solve(){
-    int n; cin>>n;
-    vector<int> a(n+1);
-    for(int i=1;i<=n;i++){
-        cin>>a[i];
-    }
-    bool ok = true;
-    for(int i=1;i<=n;i++){
-        bool notDiv = false;
-        for(int j=i+1;j>=2;j--){
-            if(a[i]%j){
-                notDiv = true;
-                break;
-            }
-        }
-        ok&=notDiv;
-    }
-    if(ok){
-        cout<<"YES"<<endl;
+    string s; cin>>s;
+    int n = (int)s.size();
+    if(n&1){
+    	cout<<"NO"<<endl;
     }else{
-        cout<<"NO"<<endl;
+    	int x = n/2;
+    	bool ok = true;
+    	for(int i=0;i<x;i++){
+    		if(s[i]!=s[i+x]){
+    			ok = false;
+    			break;
+    		}
+    	}
+    	if(ok){
+    		cout<<"YES"<<endl;
+    	}else{
+    		cout<<"NO"<<endl;
+    	}
     }
 }
  

@@ -10,6 +10,7 @@
 
 
 #include "bits/stdc++.h"
+#include <algorithm>
 using namespace std;
  
 #define ll long long 
@@ -34,26 +35,66 @@ int dy4[] = {1, -1, 0, 0};
  
  
 void solve(){
-    int n; cin>>n;
-    vector<int> a(n+1);
-    for(int i=1;i<=n;i++){
-        cin>>a[i];
+    string a,s;
+    cin>>a>>s;
+    string ans = "";
+    int l = a.size()-1;
+    int r = s.size()-1;;
+    if(r<l){
+    	cout<<"-1"<<endl;
+    	return ;
     }
+    
     bool ok = true;
-    for(int i=1;i<=n;i++){
-        bool notDiv = false;
-        for(int j=i+1;j>=2;j--){
-            if(a[i]%j){
-                notDiv = true;
-                break;
-            }
-        }
-        ok&=notDiv;
+    while(1){
+    	// cout<<l<< " "<<r<<endl;
+    	// cout<<a[l]<<" "<<s[r]<<endl;
+    	if(r<0 && l>=0){
+    		ok = false;
+    		break;
+    	}
+    	int numS = s[r] - '0';
+    	int numA = a[l] - '0';
+    	int delta = numS - numA;
+    	// cout<<delta<<endl;
+
+    	if(delta<0){
+    		int x = (10+abs(numS)) - numA;
+    		ans+=(x+'0');
+    		if(s[r-1]!='1'){
+    			ok = false;
+    			break;
+    		}
+    		r=r-2;
+    		l--;
+    	}else{
+    		ans+=(delta+'0');
+    		l--;
+    		r--;
+    	}
+    	if(l<0 || r<0){
+    		break;
+    	}
+    }
+    // cout<<"R"<<r<<endl;
+    if(l>=0 && r<0){
+    	cout<<"-1"<<endl;
+    	return;
     }
     if(ok){
-        cout<<"YES"<<endl;
+    	if(r+1){
+    		for(int i=0;i<r+1;i++){
+    			ans+=s[i];
+    		}
+    	}
+    	reverse(ans.begin(), ans.end());
+    	int pos = 0;
+    	while(ans[pos]=='0'){
+    		ans.erase(pos,1);
+    	}
+    	cout<<ans<<endl;
     }else{
-        cout<<"NO"<<endl;
+    	cout<<"-1"<<endl;
     }
 }
  
@@ -65,4 +106,4 @@ int main(){
         solve();
     }
     return 0;
-}
+}	

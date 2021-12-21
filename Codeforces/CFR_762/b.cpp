@@ -34,27 +34,19 @@ int dy4[] = {1, -1, 0, 0};
  
  
 void solve(){
-    int n; cin>>n;
-    vector<int> a(n+1);
+    long long n; cin>>n;
+    set<long long> s;
     for(int i=1;i<=n;i++){
-        cin>>a[i];
+    	long long val = i*i; 
+    	if(val>n)
+			break;
+		s.insert(val);
+		val*=i; 
+		if(val<=n){
+			s.insert(val);
+		}    	
     }
-    bool ok = true;
-    for(int i=1;i<=n;i++){
-        bool notDiv = false;
-        for(int j=i+1;j>=2;j--){
-            if(a[i]%j){
-                notDiv = true;
-                break;
-            }
-        }
-        ok&=notDiv;
-    }
-    if(ok){
-        cout<<"YES"<<endl;
-    }else{
-        cout<<"NO"<<endl;
-    }
+    cout<<s.size()<<endl;
 }
  
 int main(){
