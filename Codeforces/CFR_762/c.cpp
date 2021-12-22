@@ -35,67 +35,38 @@ int dy4[] = {1, -1, 0, 0};
  
  
 void solve(){
-    string a,s;
-    cin>>a>>s;
-    string ans = "";
-    int l = a.size()-1;
-    int r = s.size()-1;;
-    if(r<l){
-    	cout<<"-1"<<endl;
-    	return ;
+    long long a,s; cin>>a>>s;
+    vector<int> b;
+    while(s){
+        int x = a%10;
+        int y = s%10;
+        if(x<=y){
+            b.push_back(y-x);
+        }else{
+            s/=10;
+            y+=10*(s%10);
+            if(x<y && y>=10 && y<=18){
+                b.push_back(y-x);
+            }else{
+                cout<<"-1"<<endl;
+                return;
+            }
+        }
+        a/=10;
+        s/=10;
     }
-    
-    bool ok = true;
-    while(1){
-    	// cout<<l<< " "<<r<<endl;
-    	// cout<<a[l]<<" "<<s[r]<<endl;
-    	if(r<0 && l>=0){
-    		ok = false;
-    		break;
-    	}
-    	int numS = s[r] - '0';
-    	int numA = a[l] - '0';
-    	int delta = numS - numA;
-    	// cout<<delta<<endl;
-
-    	if(delta<0){
-    		int x = (10+abs(numS)) - numA;
-    		ans+=(x+'0');
-    		if(s[r-1]!='1'){
-    			ok = false;
-    			break;
-    		}
-    		r=r-2;
-    		l--;
-    	}else{
-    		ans+=(delta+'0');
-    		l--;
-    		r--;
-    	}
-    	if(l<0 || r<0){
-    		break;
-    	}
-    }
-    // cout<<"R"<<r<<endl;
-    if(l>=0 && r<0){
-    	cout<<"-1"<<endl;
-    	return;
-    }
-    if(ok){
-    	if(r+1){
-    		for(int i=0;i<r+1;i++){
-    			ans+=s[i];
-    		}
-    	}
-    	reverse(ans.begin(), ans.end());
-    	int pos = 0;
-    	while(ans[pos]=='0'){
-    		ans.erase(pos,1);
-    	}
-    	cout<<ans<<endl;
+    if(a){
+        cout<<"-1"<<endl;
     }else{
-    	cout<<"-1"<<endl;
+        while(b.back()==0){
+            b.pop_back();
+        }
+        for(int i=(int)b.size()-1;i>=0;i--){
+            cout<<b[i];
+        }
+        cout<<"\n";
     }
+
 }
  
 int main(){
