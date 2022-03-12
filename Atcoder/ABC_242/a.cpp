@@ -3,7 +3,7 @@
 */
 
 #include "bits/stdc++.h"
-#include <unordered_map>
+#include <iomanip>
 using namespace std;
 
 #define debug(x) { cerr << #x << " = " << x << endl; }
@@ -21,20 +21,17 @@ int dx4[] = {0, 0, 1, -1};
 int dy4[] = {1, -1, 0, 0};
 
 void run_case(){
-    int n; cin>>n;
-    vector<int> a(4*n - 1);
- 	unordered_map<int, int> ump;  
-    for(int i=0;i<4*n-1;i++){
-    	cin>>a[i];
-    	ump[a[i]]++;
+    int a,b,c,x;
+    cin>>a>>b>>c>>x;
+    if(x<=a){
+    	cout<<setprecision(12)<<1.00<<endl;
+    }else if(x<=b){
+    	double res = c;
+    	res/=(b-a);
+    	cout<<setprecision(12)<<res<<endl;
+    }else{
+    	cout<<setprecision(12)<<0.00<<endl;
     }
-    int ans = 0;
-    for(auto it: ump){
-    	if(it.second != 4){
-    		ans = it.first;
-    	}
-    }
-    cout<<ans<<endl;
 }
 
 int main(){

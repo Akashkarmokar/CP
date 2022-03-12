@@ -20,12 +20,41 @@ int dx4[] = {0, 0, 1, -1};
 int dy4[] = {1, -1, 0, 0};
 
 void run_case(){
-    string s; cin>>s;
-    int a, b; cin>>a>>b;
-    a--;
-    b--;
-    swap(s[a],s[b]);
-    cout<<s<<endl;
+    int n; cin>>n;
+    vector<int> boys(n);
+    for(int i=0;i<n;i++){
+    	cin>>boys[i];
+    }
+    int m; cin>>m;
+    vector<int> girls(m);
+    for(int i=0;i<m;i++){
+    	cin>>girls[i];
+    }
+
+
+    sort(boys.begin(),boys.end());
+    sort(girls.begin(),girls.end());
+
+    int ans = 0;
+
+    int l = 0;
+    int r = 0;
+    
+    while(l<n && r<m){
+    	if(abs(boys[l] - girls[r])<=1){
+    		ans++;
+    		l++;
+    		r++;
+    	}else{
+    		if(boys[l] < girls[r]){
+    			l++;
+    		}else{
+    			r++;
+    		}
+    	}
+    }
+    cout<<ans<<endl;
+
 }
 
 int main(){
